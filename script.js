@@ -3,13 +3,31 @@ var isSpeaking = false;
 var speakRate = 0.5
 $(document).ready(function(){ 
     $(document).keydown(function(e){
+        var fullscreen=false;
         if(e.key == 'F11')
-        {
-            var fullscreentext = "Full screen on";
-            var fullscreenmsg = new SpeechSynthesisUtterance(fullscreentext);
-            speechSynthesis.speak(fullscreenmsg);   
+        {  
+            if(!fullscreen){
+                var fullscreen= true;
+                var fullscreentext = "Full screen mode on";  
+                var fullscreenmsg = new SpeechSynthesisUtterance(fullscreentext);
+                speechSynthesis.speak(fullscreenmsg);  
+                if(e.key === 'F11'){
+                    var fullscreentext = "Full screen mode off";
+                    var fullscreenmsg = new SpeechSynthesisUtterance(fullscreentext);
+                    speechSynthesis.speak(fullscreenmsg);  
+                }      
+            }      
         }
     });
+    var fullscreenElement = document.fullscreenElement;        
+    document.addEventListener("fullscreenChange", function () {
+
+          if (fullscreenElement != null) {
+              console.log("Went full screen");
+          } else {
+              console.log("Exited full screen");              
+          }
+    });    
 // START OF
     // MAIN PROGRAM
     $(document).mousemove(function (e) {
@@ -45,7 +63,7 @@ $(document).ready(function(){
         //TO SPEAK
         function speaker()
         {   
-            speechSynthesis.speak(msg);
+            speechSynthesis.speak(msg);            
             speechSynthesis.speak(inputmsg);
             speechSynthesis.speak(msgaltnew);
             speechSynthesis.speak(msglabelnew);
