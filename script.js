@@ -2,6 +2,7 @@ var tagList = ['HTML', 'HEAD', 'BODY', 'DIV', 'SECTION'];
 var isSpeaking = false;
 var speakRate = 0.5
 $(document).ready(function(){ 
+    // FULLSCREEN ALERT
     $(document).keydown(function(e){
         var fullscreen=false;
         if(e.key == 'F11')
@@ -18,16 +19,8 @@ $(document).ready(function(){
                 }      
             }      
         }
-    });
-    var fullscreenElement = document.fullscreenElement;        
-    document.addEventListener("fullscreenChange", function () {
-
-          if (fullscreenElement != null) {
-              console.log("Went full screen");
-          } else {
-              console.log("Exited full screen");              
-          }
-    });    
+    }); // END OF FULLSCREEN ALERT
+   
 // START OF
     // MAIN PROGRAM
     $(document).mousemove(function (e) {
