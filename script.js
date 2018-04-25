@@ -3,24 +3,26 @@ var isSpeaking = false;
 var speakRate = 0.5
 $(document).ready(function(){ 
     // FULLSCREEN ALERT
-    $(document).keydown(function(e){
-        var fullscreen=false;
-        if(e.key == 'F11')
-        {  
-            if(!fullscreen){
-                var fullscreen= true;
+     var key = 0;
+    $(document).keyup(function(e){
+        if(e.key === 'F11')
+        {       
+                if(key===1){       // (remember that key is 0 initially)
+                  // alert('FULLSCREEN OFF');
+                    var fullscreentext = "Full screen mode off";  
+                    var fullscreenmsg = new SpeechSynthesisUtterance(fullscreentext);
+                    speechSynthesis.speak(fullscreenmsg);
+                    key=0;
+                }
+                else{
                 var fullscreentext = "Full screen mode on";  
                 var fullscreenmsg = new SpeechSynthesisUtterance(fullscreentext);
-                speechSynthesis.speak(fullscreenmsg);  
-                if(e.key === 'F11'){
-                    var fullscreentext = "Full screen mode off";
-                    var fullscreenmsg = new SpeechSynthesisUtterance(fullscreentext);
-                    speechSynthesis.speak(fullscreenmsg);  
-                }      
-            }      
+                speechSynthesis.speak(fullscreenmsg); 
+                }
+                key=1;        
         }
     }); // END OF FULLSCREEN ALERT
-   
+
 // START OF
     // MAIN PROGRAM
     $(document).mousemove(function (e) {
@@ -56,8 +58,11 @@ $(document).ready(function(){
         //TO SPEAK
         function speaker()
         {   
-            speechSynthesis.speak(msg);            
-            speechSynthesis.speak(inputmsg);
+            speechSynthesis.speak(msg);
+            msg.onend = function(){
+                alert("SPEECH ENDED");
+            }            
+            speechSynthesis.speak(inputmsg);     
             speechSynthesis.speak(msgaltnew);
             speechSynthesis.speak(msglabelnew);
         }
