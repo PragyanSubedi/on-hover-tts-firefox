@@ -1,4 +1,4 @@
-# Mouse Enabled Accessible Reading (MouseEAR)
+# Mouse Enabled Accessible Reader (MouseEAR)
 
 ##  On-hover text-to-speech synthesizer
 
