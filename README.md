@@ -10,4 +10,5 @@ Hover on text to read.
 
 - Press *"Control"* button to pause read. 
 - Press *"Shift"* button to resume read.
+- Press *"F11"* to use **FULLSCREEN MODE** for better usage. 
 - Also alerts the user on *fullscreen mode on/off.*
