@@ -1,6 +1,7 @@
 var tagList = ['HTML', 'HEAD', 'BODY', 'DIV', 'SECTION']; 
 var isSpeaking = false;
 var speakRate = 0.5
+// ON DOCUMENT READY
 $(document).ready(function(){ 
     // FULLSCREEN ALERT
      var key = 0;
@@ -66,10 +67,12 @@ $(document).ready(function(){
             speechSynthesis.speak(msgaltnew);
             speechSynthesis.speak(msglabelnew);
         }
+        // TO PAUSE
         function pauseSpeaker(){
             target.removeClass("speakText");
             speechSynthesis.pause();
         }
+        // TO RESUME
         function resumeSpeaker(){
             target.addClass("speakText");
             speechSynthesis.resume();
@@ -80,7 +83,7 @@ $(document).ready(function(){
             target.removeClass("speakText");
             speechSynthesis.cancel();
         }
-        //TO CHECK CLASS
+        //TO CHECK CLASS AND SPEAK IF CLASS IS "SPEAKTEXT"
         function classCheck()
         {
             if(target.is(".speakText") ) {
@@ -108,7 +111,9 @@ $(document).ready(function(){
                 }
                 
             }
-        }
+        } // END OF CLASSCHECK
+
+        //CHECK FOR TAGS IN THE TAGLIST
         if(tagList.indexOf(target.prop("tagName")) == -1){
             target.addClass("speakText");
             setTimeout(function(){
@@ -117,7 +122,7 @@ $(document).ready(function(){
                 });
             },10);
             classCheck();     
-            }
+        }
     }); //END of MAIN PROGRAM
    
 });
