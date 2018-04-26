@@ -2,41 +2,22 @@ var tagList = ['HTML', 'HEAD', 'BODY', 'DIV', 'SECTION'];
 var isSpeaking = false;
 var speakRate = 0.5
 // ON DOCUMENT READY
-$(document).ready(function(){ 
-    // FULLSCREEN ALERT
-     var key = 0;
-    $(document).keyup(function(e){
-        if(e.key === 'F11')
-        {       
-                if(key===1){       // (remember that key is 0 initially)
-                  // alert('FULLSCREEN OFF');
-                    var fullscreentext = "Full screen mode off";  
-                    var fullscreenmsg = new SpeechSynthesisUtterance(fullscreentext);
-                    speechSynthesis.speak(fullscreenmsg);
-                    key=0;
-                }
-                else{
-                var fullscreentext = "Full screen mode on";  
-                var fullscreenmsg = new SpeechSynthesisUtterance(fullscreentext);
-                speechSynthesis.speak(fullscreenmsg); 
-                }
-                key=1;        
-        }
-    }); // END OF FULLSCREEN ALERT
+ // FULLSCREEN ALERT
+var key = 0;
 
+$(document).ready(function(){ 
+    
 // START OF
     // MAIN PROGRAM
     $(document).mousemove(function (e) {
         //SELECT TARGET
         var target = $(e.target);
-
         //FOR INPUT FIELD
         var inputtext = target.attr("placeholder");
         if(target.prop("tagName")=="INPUT"){
          inputtext = "Input field" + inputtext;
         }
         var inputmsg = new SpeechSynthesisUtterance(inputtext);
-        
 
         //FOR BUTTON TEXT
         var msgtext = target.text();
@@ -59,10 +40,7 @@ $(document).ready(function(){
         //TO SPEAK
         function speaker()
         {   
-            speechSynthesis.speak(msg);
-            msg.onend = function(){
-                alert("SPEECH ENDED");
-            }            
+            speechSynthesis.speak(msg);       
             speechSynthesis.speak(inputmsg);     
             speechSynthesis.speak(msgaltnew);
             speechSynthesis.speak(msglabelnew);
@@ -123,8 +101,26 @@ $(document).ready(function(){
             },10);
             classCheck();     
         }
-    }); //END of MAIN PROGRAM
-   
+    }); //END of MAIN PROGRAM  
+    $(document).keydown(function(e){
+        if(e.key === 'F11')
+        {   
+            if(key===1){       // (remember that key is 0 initially)
+              // alert('FULLSCREEN OFF');
+                var fullscreentext = "Full screen off";  
+                var fullscreenmsg = new SpeechSynthesisUtterance(fullscreentext);
+                speechSynthesis.speak(fullscreenmsg);
+                key=0;
+            }
+            else{
+            var fullscreentext = "Full screen on";  
+            var fullscreenmsg = new SpeechSynthesisUtterance(fullscreentext);
+            speechSynthesis.speak(fullscreenmsg); 
+            key=1;
+            }          
+        }
+    }); // END OF FULLSCREEN ALERT 
+
 });
 
 
